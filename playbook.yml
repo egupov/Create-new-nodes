@@ -1,0 +1,7 @@
+---
+- name: ensure app public key is present on new server
+  hosts: new
+  become: true
+
+  roles:
+    - main

@@ -1,0 +1,6 @@
+---
+# handlers file for main
+- name: Restart sshd
+  service:
+    name: sshd
+    state: restarted

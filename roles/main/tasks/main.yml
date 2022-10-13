@@ -1,0 +1,41 @@
+---
+# tasks file for main
+- name: Install a list of packages
+  apt:
+    pkg:
+      - mc
+      - python
+      - pip
+      - git
+    update_cache: yes
+    state: present
+
+- name: Set authorized key took from file
+  authorized_key:
+    user: root
+    state: present
+    key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+
+- name: Allow root SSH access
+  lineinfile:
+    dest=/etc/ssh/sshd_config
+    regexp="^PermitRootLogin"
+    line="PermitRootLogin yes"
+    state=present
+
+- name: Allow root password access
+  lineinfile:
+    dest=/etc/ssh/sshd_config
+    regexp="^PasswordAuthentication"
+    line="PasswordAuthentication yes"
+    state=present
+
+#- name: copy rsa key for ROOT
+#  synchronize:
+#    src: "~/.ssh/id_rsa"
+#    dest: "/root/.ssh/id_rsa"
+
+- name: Restart sshd
+  service:
+    name: sshd
+    state: restarted

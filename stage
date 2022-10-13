@@ -1,0 +1,6 @@
+[new]
+
+
+[all:vars]
+ansible_connection=ssh
+ansible_user=
