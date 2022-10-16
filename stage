@@ -1,6 +1,6 @@
 [new]
-
+51.250.32.189
 
 [all:vars]
 ansible_connection=ssh
-ansible_user=
+ansible_user=egupov

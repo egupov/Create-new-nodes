@@ -5,7 +5,6 @@
     pkg:
       - mc
       - python
-      - pip
       - git
     update_cache: yes
     state: present
